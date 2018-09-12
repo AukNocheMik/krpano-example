@@ -1,0 +1,82 @@
+﻿<krpano>
+	
+	<!--
+		slider / blending cubes example
+	-->
+
+	<view hlookat="110" vlookat="0" fovtype="MFOV" fov="130" fovmin="60" fovmax="160" />
+
+	<style name="button" type="text"
+	       css="text-align:center;"
+	       padding="4 8"
+	       mergedalpha="false"
+	       bgborder="4 0xFFFFFF 1"
+	       bgroundedge="1"
+	       bgshadow="0 1 4 0x000000 1.0"
+	       onover="set(bgcolor, 0xC7E4FC);"
+	       onout="calc(bgcolor, pressed ? 0x90CAF9 : 0xFFFFFF);"
+	       ondown="set(bgcolor, 0x90CAF9);"
+	       onup="calc(bgcolor, hovering ? 0xC7E4FC : 0xFFFFFF);"
+	       />
+
+
+	<layer name="makescreenshot" keep="true" style="button" align="top" x="0" y="40" padding="4 8"
+	       html="Make Screenshot"
+	       onclick="loadpano2();"
+	       />
+
+	<style name="cubeface" distorted="true" width="1000" height="1000" enabled="false" alpha="0.0" />
+	<style name="cubeface1" distorted="true" width="1000" height="1000" enabled="false" alpha="1.0" />
+
+	<hotspot name="pano1_f" style="cubeface" url="pano1_f.jpg" ath="0" atv="0" />
+	<hotspot name="pano1_l" style="cubeface" url="pano1_l.jpg" ath="-90" atv="0" />
+	<hotspot name="pano1_r" style="cubeface" url="pano1_r.jpg" ath="+90" atv="0" />
+	<hotspot name="pano1_u" style="cubeface" url="pano1_u.jpg" ath="0" atv="-90" />
+	<hotspot name="pano1_d" style="cubeface" url="pano1_d.jpg" ath="0" atv="+90" />
+	<hotspot name="pano1_b" style="cubeface" url="pano1_b.jpg" ath="+180" atv="0" />
+	
+	<hotspot name="pano2_f" style="cubeface1" url="pano2_f.jpg" ath="0" atv="0" />
+	<hotspot name="pano2_l" style="cubeface1" url="pano2_l.jpg" ath="-90" atv="0" />
+	<hotspot name="pano2_r" style="cubeface1" url="pano2_r.jpg" ath="+90" atv="0" />
+	<hotspot name="pano2_u" style="cubeface1" url="pano2_u.jpg" ath="0" atv="-90" />
+	<hotspot name="pano2_d" style="cubeface1" url="pano2_d.jpg" ath="0" atv="+90" />
+	<hotspot name="pano2_b" style="cubeface1" url="pano2_b.jpg" ath="+180" atv="0" />
+	
+	<action name="setblend">
+		set(blend1, %1);
+		sub(blend2, 1.0, %1);
+		copy(hotspot[pano1_f].alpha, blend1);
+		copy(hotspot[pano1_l].alpha, blend1);
+		copy(hotspot[pano1_r].alpha, blend1);
+		copy(hotspot[pano1_b].alpha, blend1);
+		copy(hotspot[pano1_u].alpha, blend1);
+		copy(hotspot[pano1_d].alpha, blend1);
+		copy(hotspot[pano2_f].alpha, blend2);
+		copy(hotspot[pano2_l].alpha, blend2);
+		copy(hotspot[pano2_r].alpha, blend2);
+		copy(hotspot[pano2_b].alpha, blend2);
+		copy(hotspot[pano2_u].alpha, blend2);
+		copy(hotspot[pano2_d].alpha, blend2);
+	</action>
+	<action name="loadpano2">
+				delayedcall(0,
+			tween(hotspot[pano2_f].tz, -700, 2);
+			tween(hotspot[pano2_l].tz, -700, 2);
+			tween(hotspot[pano2_r].tz, -700, 2);
+			tween(hotspot[pano2_b].tz, -700, 2);
+			tween(hotspot[pano2_u].tz, -700, 2); 
+			tween(hotspot[pano2_d].tz, -700, 2);
+			
+			tween(hotspot[pano2_f].tx, -700, 2);
+			tween(hotspot[pano2_l].tx, -700, 2);
+			tween(hotspot[pano2_r].tx, -700, 2);
+			tween(hotspot[pano2_b].tx, -700, 2);
+			tween(hotspot[pano2_u].tx, -700, 2); 
+			tween(hotspot[pano2_d].tx, -700, 2);
+    );
+
+
+	</action>
+
+
+</krpano>
